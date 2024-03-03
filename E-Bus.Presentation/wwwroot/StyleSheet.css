@@ -1,0 +1,23 @@
+﻿.flex-column {
+    display : flex;
+    flex-direction : column
+}
+
+.flex-row {
+    display: flex;
+    flex-direction: column
+}
+
+.center-page{
+    justify-content:center;
+    align-items:center;
+}
+
+.text-red{
+    color:darkred;
+}
+
+.text-largeBolded{
+    font-size:xx-large;
+    font-weight:bolder;
+}
