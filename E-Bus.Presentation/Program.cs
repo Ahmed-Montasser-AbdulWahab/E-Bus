@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Repositories;
+using RepositoryContracts;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,6 +19,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("ApplicationDatabase"));
 });
+
 
 builder.Services.AddIdentity<ApplicationUser, ApplicationRole>(
         options =>
@@ -47,6 +50,11 @@ builder.Services.AddAuthorization(
             );
     }
     );
+
+builder.Services.AddScoped(typeof(IAdderRepository<>), typeof(AdderRepository<>));
+builder.Services.AddScoped(typeof(IDeleterRepository<>), typeof(DeleterRepository<>));
+builder.Services.AddScoped(typeof(IGetterRepository<>), typeof(GetterRepository<>));
+builder.Services.AddScoped(typeof(IUpdaterRepository<>), typeof(UpdaterRepository<>));
 
 builder.Services.ConfigureApplicationCookie(
     options =>
