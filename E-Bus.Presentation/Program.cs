@@ -1,5 +1,6 @@
 using E_Bus.Entities.DbContext;
 using E_Bus.Entities.Entities;
+using E_Bus.Presentation.SeedDataHelpers;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
@@ -33,6 +34,21 @@ builder.Services.AddIdentity<ApplicationUser, ApplicationRole>(
 
 var app = builder.Build();
 
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    var context = services.GetRequiredService<ApplicationDbContext>();
+    context.Database.Migrate();
+    // requires using Microsoft.Extensions.Configuration;
+    // Set password with the Secret Manager tool.
+    // dotnet user-secrets set SeedUserPW <pw>
+
+    var testUserPw = builder.Configuration.GetValue<string>("admin:password");
+    var testUsername = builder.Configuration.GetValue<string>("admin:username");
+
+    await SeedData.Initialize(services,testUsername, testUserPw);
+}
+
 if (app.Environment.IsDevelopment())
 {
     app.UseDeveloperExceptionPage();
@@ -45,7 +61,6 @@ app.UseHsts();
 app.UseHttpsRedirection();
 
 app.UseStaticFiles();
-
 app.UseRouting();
 app.MapControllers();
 
