@@ -55,7 +55,7 @@ builder.Services.ConfigureApplicationCookie(
     }
     );
 var app = builder.Build();
-
+/*
 using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;
@@ -70,7 +70,7 @@ using (var scope = app.Services.CreateScope())
 
     await SeedData.Initialize(services,testUsername, testUserPw);
 }
-
+*/
 if (app.Environment.IsDevelopment())
 {
     app.UseDeveloperExceptionPage();
