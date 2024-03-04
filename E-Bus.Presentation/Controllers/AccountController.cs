@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using ServiceContracts.DTOs;
+using ServiceContracts.Enums;
 
 namespace E_Bus.Presentation.Controllers
 {
@@ -38,7 +39,7 @@ namespace E_Bus.Presentation.Controllers
             IdentityResult userResult = await _userManager.CreateAsync(user, registerDTO.Password);
             if (userResult.Succeeded)
             {
-                var roleName = registerDTO.UserRole.ToString();
+                var roleName = UserType.User.ToString();
                 if (await _roleManager.FindByNameAsync(roleName) is null)
                 {
                     ApplicationRole role = new ApplicationRole() { Name = roleName };

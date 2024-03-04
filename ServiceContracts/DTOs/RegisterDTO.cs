@@ -42,9 +42,9 @@ namespace ServiceContracts.DTOs
         [RegularExpression("^01[0-9]{9}$" , ErrorMessage = "Not a valid PhoneNumber.")]
         [Display(Name = "Phone Number")]
         public string? PhoneNumber { get; set; }
-        [Required]
-        [Display(Name = "Role")]
-        public UserType UserRole { get; set; }
+        //[Required]
+        //[Display(Name = "Role")]
+        //public UserType UserRole { get; set; }
 
 
         public ApplicationUser ToApplicationUser()
