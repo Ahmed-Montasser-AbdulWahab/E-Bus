@@ -1,0 +1,93 @@
+﻿@model RegisterDTO;
+@{
+    ViewBag.Title = "Register";
+}
+<div class="pad-form bordering">
+    <form asp-controller="Account" asp-action="Register" method="post">
+        <div class="flexRow center-page">
+            <span class="text-black-50 text-largeBolded">Registeration Form</span>
+        </div>
+
+
+        <div class="input-group mb-3 m-3">
+            <span class="input-group-text" id="basic-addon1">National ID</span>
+            <input asp-for=NationalID class="form-control" aria-label="National ID" aria-describedby="basic-addon1">
+        </div>
+        <span class="text-red" asp-validation-for="NationalID"></span>
+        <div class="input-group m-3">
+            <span class="input-group-text">First and last name</span>
+            <input asp-for="FirstName" aria-label="First name" class="form-control">
+            <input asp-for="LastName" aria-label="Last name" class="form-control">
+        </div>
+        <span class="text-red" asp-validation-for="FirstName"></span>
+        <span class="text-red" asp-validation-for="LastName"></span>
+        <div class="input-group mb-3 m-3">
+            <span class="input-group-text" id="basic-addon1">@@</span>
+            <input asp-for=EmailAddress class="form-control" aria-label="Email" aria-describedby="basic-addon1">
+        </div>
+        <span class="text-red" asp-validation-for="EmailAddress"></span>
+        <div class="input-group mb-3 m-3">
+            <span class="input-group-text" id="basic-addon1">Phone Number</span>
+            <input asp-for=PhoneNumber class="form-control" aria-label="Phone Number" aria-describedby="basic-addon1">
+        </div>
+        <span class="text-red" asp-validation-for="PhoneNumber"></span>
+        <div class="row g-3 align-items-center m-3">
+            <div class="col-auto">
+                <label asp-for="Password" class="col-form-label">Password</label>
+            </div>
+            <div class="col-auto">
+                <input asp-for="Password" class="form-control" aria-describedby="passwordHelpInline">
+            </div>
+            <div class="col-auto">
+                <span id="passwordHelpInline" class="form-text">
+                    Must be 8 characters long.
+                </span>
+            </div>
+        </div>
+        <span class="text-red" asp-validation-for="Password"></span>
+        <div class="row g-3 align-items-center m-3">
+            <div class="col-auto">
+                <label asp-for="ConfirmPassword" class="col-form-label">Confirm Password</label>
+            </div>
+            <div class="col-auto">
+                <input asp-for="ConfirmPassword" class="form-control" aria-describedby="passwordHelpInline">
+            </div>
+            <div class="col-auto">
+                <span id="passwordHelpInline" class="form-text">
+                    Must be 8 characters long.
+                </span>
+            </div>
+        </div>
+        <span class="text-red" asp-validation-for="ConfirmPassword"></span>
+        @* <div class="row g-3 align-items-center m-3">
+            <div class="col-auto">
+                <label class="col-form-label">Choose Role:</label>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" asp-for="UserRole" id="User" value="User">
+                    <label class="form-check-label" for="User">User</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" asp-for="UserRole" id="Admin" value="Admin">
+                    <label class="form-check-label" for="Admin">Admin</label>
+                </div>
+            </div>
+        </div>
+        <span class="text-red" asp-validation-for="UserRole"></span> *@
+
+        <div class="flexRow center-page">
+            @if (ViewBag.Errors != null)
+            {
+                <div class="text-red m-2">
+                    <span>@ViewBag.Errors</span>
+                </div>
+            }
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+    </form>
+</div>
+
+@section jsSection{
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" asp-fallback-test="window.jQuery" asp-fallback-src="~/JQuery/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.20.0/jquery.validate.min.js" asp-fallback-test="window.jQuery.validator" asp-fallback-src="~/JQuery/jquery.validate.min.js" integrity="sha512-WMEKGZ7L5LWgaPeJtw9MBM4i5w5OSBlSjTjCtSnvFJGSVD26gE5+Td12qN5pvWXhuWaWcVwF++F7aqu9cvqP0A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/4.0.0/jquery.validate.unobtrusive.min.js" asp-fallback-test="window.jQuery.validator.unobstrusive" asp-fallback-src="~/JQuery/jquery.validate.unobtrusive.min.js" integrity="sha512-xq+Vm8jC94ynOikewaQXMEkJIOBp7iArs3IhFWSWdRT3Pq8wFz46p+ZDFAR7kHnSFf+zUv52B3prRYnbDRdgog==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+}
