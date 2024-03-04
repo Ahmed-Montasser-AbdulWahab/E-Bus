@@ -69,5 +69,10 @@ namespace E_Bus.Presentation.Controllers
                 return View(registerDTO);
             }
         }
+
+        public async Task<IActionResult> IsValidNationalID(string nationalID)
+        {
+            return Json(await _userManager.FindByNameAsync(nationalID) is null);
+        }
     }
 }

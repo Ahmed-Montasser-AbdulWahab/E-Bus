@@ -1,11 +1,9 @@
 ﻿using E_Bus.Entities.Entities;
 using ServiceContracts.Enums;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc.ViewFeatures;
+using Microsoft.AspNetCore.Mvc;
+
 
 namespace ServiceContracts.DTOs
 {
@@ -20,6 +18,7 @@ namespace ServiceContracts.DTOs
         [Required]
         [StringLength(14, ErrorMessage ="NationalID is 14 digits.")]
         [RegularExpression("^[2-3]{1}[0-9]{13}$", ErrorMessage = "Not a valid NationalID.")]
+        [Remote(action: "IsValidNationalID", controller: "Account", ErrorMessage = "NationalID is used before.")]
         public string? NationalID { get; set; }
         [Required]
         [DataType(DataType.EmailAddress)]
@@ -56,7 +55,7 @@ namespace ServiceContracts.DTOs
                 FirstName = FirstName,
                 LastName = LastName,
                 NationalID = NationalID,
-                UserName = $"{FirstName}-{NationalID}",
+                UserName = NationalID,
                 PhoneNumber = PhoneNumber,
                 
             };
