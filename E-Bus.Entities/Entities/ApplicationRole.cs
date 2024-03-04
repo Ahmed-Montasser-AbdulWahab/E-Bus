@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace E_Bus.Entities.Entities
 {
-    public class ApplicationRole : IdentityRole<long>
+    public class ApplicationRole : IdentityRole<Guid>
     {
     }
 }

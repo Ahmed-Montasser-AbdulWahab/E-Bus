@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace E_Bus.Entities.DbContext
 {
-    public class ApplicationDbContext : IdentityDbContext<ApplicationUser, ApplicationRole, long>
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser, ApplicationRole, Guid>
     {
         public ApplicationDbContext(DbContextOptions options): base(options)
         {

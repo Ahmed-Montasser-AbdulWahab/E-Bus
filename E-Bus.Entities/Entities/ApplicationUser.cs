@@ -7,9 +7,10 @@ using System.Threading.Tasks;
 
 namespace E_Bus.Entities.Entities
 {
-    public class ApplicationUser : IdentityUser<long>
+    public class ApplicationUser : IdentityUser<Guid>
     {
         public string? FirstName { get; set; }
         public string? LastName { get; set;}
+        public string? NationalID { get; set; }
     }
 }
