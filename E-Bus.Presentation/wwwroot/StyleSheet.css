@@ -1,9 +1,9 @@
-﻿.flex-column {
+﻿.flexColumn {
     display : flex;
     flex-direction : column
 }
 
-.flex-row {
+.flexRow {
     display: flex;
     flex-direction: column
 }
@@ -20,4 +20,17 @@
 .text-largeBolded{
     font-size:xx-large;
     font-weight:bolder;
+}
+
+.pad-form{
+    padding-left: 10vw;
+    padding-top: 1vw;
+    padding-bottom: 1vw;
+    padding-right: 10vw
+}
+
+.bordering {
+    box-sizing:content-box;
+    border : solid gray;
+    margin : 1vw 20vw 1vw 20vw
 }
