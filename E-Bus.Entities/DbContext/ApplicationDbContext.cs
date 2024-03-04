@@ -15,5 +15,18 @@ namespace E_Bus.Entities.DbContext
         {
             
         }
+
+        public virtual DbSet<Trip> Trips { get; set; }
+
+        public virtual DbSet<TransportationService> Transportations { get; set; }
+
+        public virtual DbSet<Reservation> Reservations { get; set; }
+
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            base.OnModelCreating(builder);
+            builder.Entity<Reservation>().HasKey(nameof(Reservation.UserId), nameof(Reservation.TripId));  
+        }
     }
 }
