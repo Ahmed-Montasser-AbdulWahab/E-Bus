@@ -1,0 +1,49 @@
+﻿@model LoginDTO;
+@{
+    ViewBag.Title = "Login";
+}
+<div class="pad-form bordering">
+    <form asp-controller="Account" asp-action="Login" method="post">
+        <div class="flexRow center-page">
+            <span class="text-black-50 text-largeBolded">Login</span>
+        </div>
+
+
+        <div class="input-group mb-3 m-3">
+            <span class="input-group-text" id="basic-addon1">National ID</span>
+            <input asp-for=NationalID class="form-control" aria-label="National ID" aria-describedby="basic-addon1">
+        </div>
+        <span class="text-red" asp-validation-for="NationalID"></span>
+        
+        <div class="row g-3 align-items-center m-3">
+            <div class="col-auto">
+                <label asp-for="Password" class="col-form-label">Password</label>
+            </div>
+            <div class="col-auto">
+                <input asp-for="Password" class="form-control" aria-describedby="passwordHelpInline">
+            </div>
+            <div class="col-auto">
+                <span id="passwordHelpInline" class="form-text">
+                    Must be 8 characters long.
+                </span>
+            </div>
+        </div>
+        <span class="text-red" asp-validation-for="Password"></span>
+        
+        <div class="flexRow center-page">
+            @if (ViewBag.Errors != null)
+            {
+                <div class="text-red m-2">
+                    <span>@ViewBag.Errors</span>
+                </div>
+            }
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+    </form>
+</div>
+
+@section jsSection{
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" asp-fallback-test="window.jQuery" asp-fallback-src="~/JQuery/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.20.0/jquery.validate.min.js" asp-fallback-test="window.jQuery.validator" asp-fallback-src="~/JQuery/jquery.validate.min.js" integrity="sha512-WMEKGZ7L5LWgaPeJtw9MBM4i5w5OSBlSjTjCtSnvFJGSVD26gE5+Td12qN5pvWXhuWaWcVwF++F7aqu9cvqP0A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/4.0.0/jquery.validate.unobtrusive.min.js" asp-fallback-test="window.jQuery.validator.unobstrusive" asp-fallback-src="~/JQuery/jquery.validate.unobtrusive.min.js" integrity="sha512-xq+Vm8jC94ynOikewaQXMEkJIOBp7iArs3IhFWSWdRT3Pq8wFz46p+ZDFAR7kHnSFf+zUv52B3prRYnbDRdgog==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+}
