@@ -1,6 +1,7 @@
 using E_Bus.Entities.DbContext;
 using E_Bus.Entities.Entities;
 using E_Bus.Presentation.SeedDataHelpers;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
@@ -32,6 +33,27 @@ builder.Services.AddIdentity<ApplicationUser, ApplicationRole>(
     AddUserStore<UserStore<ApplicationUser, ApplicationRole, ApplicationDbContext, Guid>>().
     AddRoleStore<RoleStore<ApplicationRole, ApplicationDbContext, Guid>>();
 
+builder.Services.AddAuthorization(
+    options =>
+    {
+        options.FallbackPolicy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
+        options.AddPolicy("NoLogin",
+            policy =>
+            {
+                policy.RequireAssertion(
+                    context => { return !context.User.Identity!.IsAuthenticated; }
+                    );
+            }
+            );
+    }
+    );
+
+builder.Services.ConfigureApplicationCookie(
+    options =>
+    {
+        options.LoginPath = "/Account/Login";
+    }
+    );
 var app = builder.Build();
 
 using (var scope = app.Services.CreateScope())
@@ -62,6 +84,10 @@ app.UseHttpsRedirection();
 
 app.UseStaticFiles();
 app.UseRouting();
+app.UseAuthentication();
+app.UseAuthorization(
+
+    );
 app.MapControllers();
 
 app.Run();

@@ -1,4 +1,5 @@
 ﻿using E_Bus.Entities.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using ServiceContracts.DTOs;
@@ -20,11 +21,13 @@ namespace E_Bus.Presentation.Controllers
             _roleManager = roleManager;
         }
         [HttpGet]
+        [Authorize("NoLogin")]
         public async Task<IActionResult> Register()
         { 
             return View();
         }
         [HttpPost]
+        [Authorize("NoLogin")]
         public async Task<IActionResult> Register(RegisterDTO registerDTO)
         {
             if (!ModelState.IsValid)
@@ -70,19 +73,21 @@ namespace E_Bus.Presentation.Controllers
                 return View(registerDTO);
             }
         }
-
+        [Authorize("NoLogin")]
         public async Task<IActionResult> IsValidNationalID(string nationalID)
         {
             return Json(await _userManager.FindByNameAsync(nationalID) is null);
         }
 
         [HttpGet]
+        [Authorize("NoLogin")]
         public async Task<IActionResult> Login()
         {
             return View();
         }
 
         [HttpPost]
+        [Authorize("NoLogin")]
         public async Task<IActionResult> Login(LoginDTO loginDTO)
         {
             if (!ModelState.IsValid)
