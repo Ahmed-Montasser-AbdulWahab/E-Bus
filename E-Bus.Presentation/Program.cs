@@ -87,6 +87,7 @@ if (app.Environment.IsDevelopment())
     app.UseExceptionHandler("/Errors/ShowError");
 }
 
+app.UseStatusCodePagesWithRedirects("/Errors/ShowError?statusCode={0}");
 app.UseHsts();
 app.UseHttpsRedirection();
 

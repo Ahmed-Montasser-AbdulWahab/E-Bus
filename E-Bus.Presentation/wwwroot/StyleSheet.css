@@ -8,6 +8,10 @@
     flex-direction: column
 }
 
+.flexing{
+    display: flex;
+}
+
 .center-page{
     justify-content:center;
     align-items:center;

@@ -88,7 +88,7 @@ namespace E_Bus.Presentation.Controllers
 
         [HttpPost]
         [Authorize("NoLogin")]
-        public async Task<IActionResult> Login(LoginDTO loginDTO)
+        public async Task<IActionResult> Login(LoginDTO loginDTO, [FromQuery] string? returnUrl)
         {
             if (!ModelState.IsValid)
             {
@@ -103,6 +103,10 @@ namespace E_Bus.Presentation.Controllers
 
             if(signInResult.Succeeded)
             {
+                if (!string.IsNullOrEmpty(returnUrl) && Url.IsLocalUrl(returnUrl) )
+                {
+                    return LocalRedirect(returnUrl);
+                }
                 return RedirectToAction("Index", "Home");
             } else
             {
@@ -117,6 +121,11 @@ namespace E_Bus.Presentation.Controllers
         {
             await _signInManager.SignOutAsync();
             return RedirectToAction("Index", "Home");
+        }
+
+        public async Task<IActionResult> AccessDenied()
+        {
+            return View("AccessDenied");
         }
     }
 }

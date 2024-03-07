@@ -3,7 +3,7 @@
     ViewBag.Title = "Login";
 }
 <div class="pad-form bordering">
-    <form asp-controller="Account" asp-action="Login" method="post">
+    <form asp-controller="Account" asp-action="Login" asp-route-returnUrl="@Context.Request.Query["returnUrl"]" method="post">
         <div class="flexRow center-page">
             <span class="text-black-50 text-largeBolded">Login</span>
         </div>
