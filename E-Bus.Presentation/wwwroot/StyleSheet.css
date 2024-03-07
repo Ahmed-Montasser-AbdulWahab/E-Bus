@@ -38,3 +38,23 @@
     border : solid gray;
     margin : 1vw 20vw 1vw 20vw
 }
+
+.body-content {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 500;
+    color: rgba(61, 55, 58, 1);
+    font-size: large
+}
+
+.w-50{
+    width: 50vw
+}
+
+.h-30{
+    height: 30vw
+}
+
+#show_lines_anchorTag:link, #show_lines_anchorTag:visited, #show_lines_anchorTag:hover, #show_lines_anchorTag:active {
+    text-decoration: none;
+    color: rgba(61, 55, 58, 1);
+}

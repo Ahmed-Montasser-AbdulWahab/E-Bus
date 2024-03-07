@@ -1,0 +1,41 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<div class="flexColumn center-page">
+    
+    <div id="carouselExampleIndicators" class="carousel slide m-5 h-30 w-50">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+            <div class="carousel-item active" style="text-align:center">
+                <img class="h-30" src="~/Index/TOYOTA-HIACE.webp" class="h-30 d-block" alt="hiace">
+            </div>
+            <div class="carousel-item" style="text-align:center">
+                <img class="h-30" src="~/Index/MCV_230.jpg" class="h-30 d-block" alt="mcv_230">
+            </div>
+            <div class="carousel-item" style="text-align:center">
+                <img class="h-30" src="~/Index/MCV_600.jpg" class="h-30 d-block" alt="mcv_600">
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+
+
+    <div>
+        <p class="body-content">
+            <strong>E-Bus</strong> is a platform that serves E-Bus company for transportations. Our company offers the service with comfortable, luxurious and convinient means.
+            To see our Upcoming trips : <a id="show_lines_anchorTag" asp-action="Trips" asp-controller="Home">CLICK HERE</a>
+        </p>
+    </div>
+</div>
