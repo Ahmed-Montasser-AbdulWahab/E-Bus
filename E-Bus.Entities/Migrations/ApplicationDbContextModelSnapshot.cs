@@ -171,7 +171,7 @@ namespace E_Bus.Entities.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTime>("ArrivalDate")
+                    b.Property<DateTime>("ArrivalTime")
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime>("DepartureTime")
@@ -190,8 +190,7 @@ namespace E_Bus.Entities.Migrations
                         .HasMaxLength(40)
                         .HasColumnType("nvarchar(40)");
 
-                    b.Property<int?>("Ticket")
-                        .IsRequired()
+                    b.Property<int>("Ticket")
                         .HasColumnType("int");
 
                     b.HasKey("Id");

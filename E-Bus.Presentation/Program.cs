@@ -8,6 +8,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Repositories;
 using RepositoryContracts;
+using ServiceContracts;
+using Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -55,6 +57,8 @@ builder.Services.AddScoped(typeof(IAdderRepository<>), typeof(AdderRepository<>)
 builder.Services.AddScoped(typeof(IDeleterRepository<>), typeof(DeleterRepository<>));
 builder.Services.AddScoped(typeof(IGetterRepository<>), typeof(GetterRepository<>));
 builder.Services.AddScoped(typeof(IUpdaterRepository<>), typeof(UpdaterRepository<>));
+
+builder.Services.AddScoped<ITripsService,TripsService>();
 
 builder.Services.ConfigureApplicationCookie(
     options =>

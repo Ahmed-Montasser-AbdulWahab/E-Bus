@@ -1,0 +1,43 @@
+﻿@model List<TripResponse>
+@{
+    ViewBag.Title = "Upcoming Trips";
+}
+
+<div class="flexColumn center-page">
+    @if (Model is null || Model.Any())
+    {
+        <span class="text-red text-largeBolded">No Upcoming Trips</span>
+        
+    }
+    else
+    {
+        <table class="table table-striped m-5">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Starting</th>
+                    <th scope="col">Destination</th>
+                    <th scope="col">Departure Time</th>
+                    <th scope="col">Arrival Time</th>
+                    <th scope="col">Seats</th>
+                    <th scope="col">Options</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (TripResponse tripResponse in Model)
+                {
+                    <tr>
+                        <th scope="row">@Model.IndexOf(tripResponse)</th>
+                        <td>@tripResponse.Starting</td>
+                        <td>@tripResponse.Ending</td>
+                        <td>@tripResponse.DepartureTime</td>
+                        <td>@tripResponse.ArrivalTime</td>
+
+                        <td>@tripResponse.RemainingSeats / <strong>@tripResponse.NumberOfSeats</strong></td>
+                        <td><a id="trip_register_anchor_tag" role="button" class="btn btn-primary" asp-controller="Trips" asp-action="Register">Register</a></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>

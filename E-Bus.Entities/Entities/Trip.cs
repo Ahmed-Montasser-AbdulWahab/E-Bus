@@ -29,12 +29,12 @@ namespace E_Bus.Entities.Entities
         public virtual TransportationService? ServiceType { get; set; }
 
         [Required]
-        public int? Ticket { get; set; }
+        public int Ticket { get; set; }
 
         [Required]
         public DateTime DepartureTime { get; set; }
         [Required]
-        public DateTime ArrivalDate { get; set; }
+        public DateTime ArrivalTime { get; set; }
 
         public virtual ICollection<Reservation>? Reservations { get; set; }
     }
