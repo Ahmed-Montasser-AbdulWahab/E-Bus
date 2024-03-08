@@ -11,5 +11,7 @@ namespace ServiceContracts
     {
         public Task<List<TripResponse>?> GetAllTripsAsync();
         public Task<List<TripResponse>?> GetUpcomingTripsAsync();
+
+        public Task<bool> AddTripAsync(TripAddRequest tripAddRequest);
     }
 }

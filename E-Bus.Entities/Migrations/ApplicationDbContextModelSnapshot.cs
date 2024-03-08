@@ -140,7 +140,7 @@ namespace E_Bus.Entities.Migrations
 
                     b.HasIndex("TripId");
 
-                    b.ToTable("Reservations");
+                    b.ToTable("Reservations", (string)null);
                 });
 
             modelBuilder.Entity("E_Bus.Entities.Entities.TransportationService", b =>
@@ -162,7 +162,7 @@ namespace E_Bus.Entities.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Transportations");
+                    b.ToTable("Transportations", (string)null);
                 });
 
             modelBuilder.Entity("E_Bus.Entities.Entities.Trip", b =>
@@ -197,7 +197,7 @@ namespace E_Bus.Entities.Migrations
 
                     b.HasIndex("ServiceTypeId");
 
-                    b.ToTable("Trips");
+                    b.ToTable("Trips", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>

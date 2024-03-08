@@ -1,0 +1,58 @@
+﻿@model TripAddRequest;
+
+@{
+    ViewBag.Title = "Admin - AddTrip";
+}
+<div class="pad-form bordering">
+    <form asp-controller="Trips" asp-action="AddTrip" method="post">
+        <div class="flexRow center-page">
+            <span class="text-black-50 text-largeBolded">Add Trip Form</span>
+        </div>
+
+
+        <div class="input-group m-3">
+            <span class="input-group-text">Starting and Ending Terminals</span>
+            <input asp-for="Starting" aria-label="Starting" class="form-control">
+            <input asp-for="Ending" aria-label="Ending" class="form-control">
+        </div>
+        <span class="text-red" asp-validation-for="Starting"></span><br />
+        <span class="text-red" asp-validation-for="Ending"></span>
+        <div class="input-group mb-3 m-3">
+            <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-money-bill-1-wave"></i></span>
+            <input asp-for=Ticket class="form-control" aria-label="Ticket" aria-describedby="basic-addon1">
+        </div>
+        <span class="text-red" asp-validation-for="Ticket"></span>
+
+        <div class="input-group mb-3 m-3">
+            <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-arrow-up"></i></span>
+            <input asp-for=DepartureTime class="form-control" aria-label="Departure Time" aria-describedby="basic-addon1">
+        </div>
+        <span class="text-red" asp-validation-for="DepartureTime"></span>
+        <div class="input-group mb-3 m-3">
+            <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-arrow-down"></i></span>
+            <input asp-for=ArrivalTime class="form-control" aria-label="Arrival Time" aria-describedby="basic-addon1">
+        </div>
+        <span class="text-red" asp-validation-for="ArrivalTime"></span>
+
+        <select class="form-select" asp-for=ServiceTypeId  aria-label="Select Transportation Service" asp-items="@ViewBag.Means">
+            <option selected disabled>Choose a Transportation Mean</option>            
+        </select>
+        <span class="text-red" asp-validation-for="ServiceTypeId"></span>
+
+        <div class="flexRow center-page">
+            @if (ViewBag.Errors != null)
+            {
+                <div class="text-red m-2">
+                    <span>@ViewBag.Errors</span>
+                </div>
+            }
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+    </form>
+</div>
+
+@section jsSection {
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" asp-fallback-test="window.jQuery" asp-fallback-src="~/JQuery/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.20.0/jquery.validate.min.js" asp-fallback-test="window.jQuery.validator" asp-fallback-src="~/JQuery/jquery.validate.min.js" integrity="sha512-WMEKGZ7L5LWgaPeJtw9MBM4i5w5OSBlSjTjCtSnvFJGSVD26gE5+Td12qN5pvWXhuWaWcVwF++F7aqu9cvqP0A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/4.0.0/jquery.validate.unobtrusive.min.js" asp-fallback-test="window.jQuery.validator.unobstrusive" asp-fallback-src="~/JQuery/jquery.validate.unobtrusive.min.js" integrity="sha512-xq+Vm8jC94ynOikewaQXMEkJIOBp7iArs3IhFWSWdRT3Pq8wFz46p+ZDFAR7kHnSFf+zUv52B3prRYnbDRdgog==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+}

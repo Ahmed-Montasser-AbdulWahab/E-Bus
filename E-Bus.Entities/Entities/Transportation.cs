@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace E_Bus.Entities.Entities
 {
-    public class TransportationService
+    public class Transportation
     {
         [Key]
         public Guid Id { get; set; }

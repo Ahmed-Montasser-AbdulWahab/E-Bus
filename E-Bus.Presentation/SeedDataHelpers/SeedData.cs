@@ -15,7 +15,7 @@ namespace E_Bus.Presentation.SeedDataHelpers
             {
 
                 var adminID = await EnsureUser(serviceProvider, adminPassword, adminUser);
-                await EnsureRole(serviceProvider, adminID, Constants.Super_Admin.ToString());
+                await EnsureRole(serviceProvider, adminID, Constants.Admin.ToString());
 
 
             }

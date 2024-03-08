@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Repositories;
+using Repositories.TranspostationRepository;
+using Repositories.TripRepository;
 using RepositoryContracts;
 using ServiceContracts;
 using Services;
@@ -53,13 +55,18 @@ builder.Services.AddAuthorization(
     }
     );
 
-builder.Services.AddScoped(typeof(IAdderRepository<>), typeof(AdderRepository<>));
-builder.Services.AddScoped(typeof(IDeleterRepository<>), typeof(DeleterRepository<>));
-builder.Services.AddScoped(typeof(IGetterRepository<>), typeof(GetterRepository<>));
-builder.Services.AddScoped(typeof(IUpdaterRepository<>), typeof(UpdaterRepository<>));
+builder.Services.AddScoped<IAdderRepository<Trip>, TripAdderRepository>();
+builder.Services.AddScoped<IDeleterRepository<Trip>, TripDeleterRepository>();
+builder.Services.AddScoped<IGetterRepository<Trip>, TripGetterRepository>();
+builder.Services.AddScoped<IUpdaterRepository<Trip>, TripUpdaterRepository>();
+
+builder.Services.AddScoped<IGetterRepository<Transportation>, TransportationGetterRepository>();
+
 
 builder.Services.AddScoped<ITripsService,TripsService>();
+builder.Services.AddScoped<ITransportationsService,TransportationsService>();
 
+builder.Services.AddAutoMapper(typeof(Program));
 builder.Services.ConfigureApplicationCookie(
     options =>
     {

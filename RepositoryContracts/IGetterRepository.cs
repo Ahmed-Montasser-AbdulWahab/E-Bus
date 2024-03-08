@@ -8,8 +8,8 @@ namespace RepositoryContracts
 {
     public interface IGetterRepository<T> where T : class
     {
-        public Task<List<T>?> GetAllAsync();
+        public Task<List<T>?> GetAllAsync(bool include = false);
 
-        public Task<T?> GetByIdAsync(object id);
+        public Task<T?> GetByIdAsync(object id, bool include = false);
     }
 }

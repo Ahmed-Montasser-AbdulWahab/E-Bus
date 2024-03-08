@@ -18,7 +18,7 @@ namespace E_Bus.Entities.DbContext
 
         public virtual DbSet<Trip> Trips { get; set; }
 
-        public virtual DbSet<TransportationService> Transportations { get; set; }
+        public virtual DbSet<Transportation> Transportations { get; set; }
 
         public virtual DbSet<Reservation> Reservations { get; set; }
 

@@ -20,5 +20,7 @@ namespace E_Bus.Presentation.Controllers
         {
             return View(await _tripsService.GetUpcomingTripsAsync());
         }
+
+
     }
 }

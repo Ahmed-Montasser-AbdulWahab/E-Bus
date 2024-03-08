@@ -13,20 +13,29 @@ namespace Services
     public class TripsService : ITripsService
     {
         private readonly IGetterRepository<Trip> getterTripRepository;
+        private readonly IAdderRepository<Trip> adderRepository;
 
-        public TripsService(IGetterRepository<Trip> getterTripRepository)
+        public TripsService(IGetterRepository<Trip> getterTripRepository, IAdderRepository<Trip> adderRepository)
         {
             this.getterTripRepository = getterTripRepository;
+            this.adderRepository = adderRepository;
         }
 
         public async Task<List<TripResponse>?> GetAllTripsAsync()
         {
-            return (await getterTripRepository.GetAllAsync())?.Select(trip => trip.ToResponse()).ToList();
+            return (await getterTripRepository.GetAllAsync(true))?.Select(trip => trip.ToResponse()).ToList();
         }
 
         public async Task<List<TripResponse>?> GetUpcomingTripsAsync()
         {
-            return (await getterTripRepository.GetAllAsync())?.Where(trip => trip.DepartureTime.CompareTo(DateTime.Now) < 1).Select(trip => trip.ToResponse()).ToList();
+            return (await getterTripRepository.GetAllAsync(true))?.Where(trip => trip.DepartureTime.CompareTo(DateTime.Now) > 0).Select(trip => trip.ToResponse()).ToList();
+        }
+
+        public async Task<bool> AddTripAsync(TripAddRequest tripAddRequest)
+        {
+            var trip = tripAddRequest.ToTrip();
+            return await adderRepository.AddAsync(trip);
+            
         }
     }
 }

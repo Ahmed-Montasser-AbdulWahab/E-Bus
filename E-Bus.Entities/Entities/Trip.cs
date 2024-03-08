@@ -22,11 +22,11 @@ namespace E_Bus.Entities.Entities
         public string? Ending { get; set;}
 
         
+        [Required]
         public Guid ServiceTypeId { get; set; }
 
-        [Required]
         [ForeignKey(nameof(ServiceTypeId))]
-        public virtual TransportationService? ServiceType { get; set; }
+        public virtual Transportation? ServiceType { get; set; }
 
         [Required]
         public int Ticket { get; set; }

@@ -4,9 +4,9 @@
 }
 
 <div class="flexColumn center-page">
-    @if (Model is null || Model.Any())
+    @if (Model is null || !Model.Any())
     {
-        <span class="text-red text-largeBolded">No Upcoming Trips</span>
+        <span style="text-align:center" class="text-red text-largeBolded">No Upcoming Trips</span>
         
     }
     else
@@ -19,7 +19,7 @@
                     <th scope="col">Destination</th>
                     <th scope="col">Departure Time</th>
                     <th scope="col">Arrival Time</th>
-                    <th scope="col">Seats</th>
+                    <th scope="col">Seats Reserved</th>
                     <th scope="col">Options</th>
                 </tr>
             </thead>
@@ -27,14 +27,14 @@
                 @foreach (TripResponse tripResponse in Model)
                 {
                     <tr>
-                        <th scope="row">@Model.IndexOf(tripResponse)</th>
+                        <th scope="row">@(Model.IndexOf(tripResponse) + 1)</th>
                         <td>@tripResponse.Starting</td>
                         <td>@tripResponse.Ending</td>
                         <td>@tripResponse.DepartureTime</td>
                         <td>@tripResponse.ArrivalTime</td>
 
                         <td>@tripResponse.RemainingSeats / <strong>@tripResponse.NumberOfSeats</strong></td>
-                        <td><a id="trip_register_anchor_tag" role="button" class="btn btn-primary" asp-controller="Trips" asp-action="Register">Register</a></td>
+                        <td><a id="trip_register_anchor_tag" role="button" class="btn btn-primary" asp-controller="Trips" asp-action="Register">Register</a> <a id="trip_register_anchor_tag" role="button" class="btn btn-primary" asp-controller="Trips" asp-action="TripDetails">Details</a></td>
                     </tr>
                 }
             </tbody>

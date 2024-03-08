@@ -38,15 +38,15 @@ namespace ServiceContracts.DTOs.TripDTO
         {
             return new TripResponse()
             {
-                ArrivalTime = trip.ArrivalTime.ToString("dddd, dd MMMM yyyy"),
-                DepartureTime = trip.DepartureTime.ToString("dddd, dd MMMM yyyy"),
+                ArrivalTime = trip.ArrivalTime.ToString("dddd, dd MMMM yyyy hh:mm tt"),
+                DepartureTime = trip.DepartureTime.ToString("dddd, dd MMMM yyyy hh:mm tt"),
                 Ending = trip.Ending,
                 Starting = trip.Starting,
                 Id = trip.Id.ToString(),
-                ServiceTypeName = trip.ServiceType!.Name,
+                ServiceTypeName = trip.ServiceType?.Name,
                 Ticket = trip.Ticket.ToString("N"),
-                NumberOfSeats = trip.ServiceType.Seats.ToString(),
-                RemainingSeats = $"{trip.ServiceType.Seats - (trip.Reservations?.Count ?? 0)}"
+                NumberOfSeats = trip.ServiceType?.Seats.ToString(),
+                RemainingSeats = $"{(trip.Reservations?.Count ?? 0)}"
             };
         }
 
