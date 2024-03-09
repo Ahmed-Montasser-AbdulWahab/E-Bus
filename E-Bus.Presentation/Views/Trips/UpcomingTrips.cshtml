@@ -33,7 +33,7 @@
                         <td>@tripResponse.DepartureTime</td>
                         <td>@tripResponse.ArrivalTime</td>
 
-                        <td>@tripResponse.RemainingSeats / <strong>@tripResponse.NumberOfSeats</strong></td>
+                        <td>@tripResponse.TakenSeats / <strong>@tripResponse.NumberOfSeats</strong></td>
                         <td>
                             @if (User.IsInRole("User"))
                             {

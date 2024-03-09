@@ -1,0 +1,41 @@
+﻿@model TripResponse
+<div class="flexColumn center-page bordering p-4">
+    <dl class="row">
+        <dt class="col-sm-3">Seats Taken</dt>
+        <dd class="col-sm-9">@Model.TakenSeats <strong>/ @Model.NumberOfSeats</strong></dd>
+
+
+        <dt class="col-sm-3">Trip</dt>
+        <dd class="col-sm-9">
+            <dl class="row">
+                <dt class="col-sm-4">Starting</dt>
+                <dd class="col-sm-8">@Model.Starting</dd>
+            </dl>
+            <dl class="row">
+                <dt class="col-sm-4">Ending</dt>
+                <dd class="col-sm-8"> @Model.Ending</dd>
+            </dl>
+        </dd>
+
+        <dt class="col-sm-3">Transportation Mean</dt>
+        <dd class="col-sm-9">@Model.ServiceTypeName</dd>
+
+        <dt class="col-sm-3">Ticket</dt>
+        <dd class="col-sm-9">
+            @Model.Ticket EGP
+        </dd>
+
+        <dt class="col-sm-3">Departure Time</dt>
+        <dd class="col-sm-9">@Model.DepartureTime</dd>
+
+        <dt class="col-sm-3">Arrival Time</dt>
+        <dd class="col-sm-9">@Model.ArrivalTime</dd>
+    </dl>
+    <div class="flexRow center-page">
+        @if (User.IsInRole("User"))
+        {
+            <a role="button" class="btn btn-outline-success" asp-area="user" asp-controller="Trips" asp-action="RegisterTrip" asp-route-tripId="@Model.Id">Register</a>
+        }
+        <a role="button" class="btn btn-outline-danger" asp-area="" asp-controller="Trips" asp-action="UpcomingTrips">Back</a>
+    </div>
+</div>
