@@ -37,9 +37,9 @@
                         <td>
                             @if (User.IsInRole("User"))
                             {
-                                <a id="trip_register_anchor_tag" role="button" class="btn btn-primary" asp-area="user" asp-controller="Trips" asp-action="RegisterTrip" asp-route-tripId="@tripResponse.Id">Register</a>
+                                <a role="button" class="btn btn-outline-success" asp-area="user" asp-controller="Trips" asp-action="RegisterTrip" asp-route-tripId="@tripResponse.Id">Register</a>
                             }
-                            <a id="trip_register_anchor_tag" role="button" class="btn btn-primary" asp-area="" asp-controller="Trips" asp-action="TripDetails" asp-route-tripId="@tripResponse.Id">Details</a>
+                            <a role="button" class="btn btn-outline-danger" asp-area="" asp-controller="Trips" asp-action="TripDetails" asp-route-tripId="@tripResponse.Id">Details</a>
                         </td>
                     </tr>
                 }

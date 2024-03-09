@@ -33,12 +33,12 @@ namespace E_Bus.Presentation.Areas.User.Controllers
             {
                 return StatusCode(400);
             }
-            if (await _reservationService.GetReservationById($"{tripId}{user.Id}") is not null)
+            if (await _reservationService.GetReservationById($"{tripId}{user.Id}", false) is not null)
             {
                 ViewBag.Errors = "You can't register more than once for same trip.";
                 return View();
             }
-            UserTripWrapperModel userTripWrapperModel = new UserTripWrapperModel()
+            ReservationResponse userTripWrapperModel = new ReservationResponse()
             {
                 TheTripResponse = await _tripsService.GetTripByIdAsync(tripId, true),
                 TheUserDTO = user.ToUserDTO()
@@ -72,7 +72,7 @@ namespace E_Bus.Presentation.Areas.User.Controllers
         [HttpGet("{TripId:guid}/{UserId:guid}")]
         public async Task<IActionResult> ShowReservation([FromRoute] ReservationId reservationId)
         {
-            var userTripWrapperModel = await _reservationService.GetReservationById($"{reservationId.TripId}{reservationId.UserId}", true);
+            var userTripWrapperModel = await _reservationService.GetReservationById($"{reservationId.TripId}{reservationId.UserId}");
 
             if (userTripWrapperModel is null || userTripWrapperModel.TheTripResponse is null || userTripWrapperModel.TheUserDTO is null) { return StatusCode(400); }
 
@@ -82,7 +82,7 @@ namespace E_Bus.Presentation.Areas.User.Controllers
         [HttpGet("{TripId:guid}/{UserId:guid}")]
         public async Task<IActionResult> ShowPdf([FromRoute] ReservationId reservationId)
         {
-            var userTripWrapperModel = await _reservationService.GetReservationById($"{reservationId.TripId}{reservationId.UserId}", true);
+            var userTripWrapperModel = await _reservationService.GetReservationById($"{reservationId.TripId}{reservationId.UserId}");
 
             if (userTripWrapperModel is null || userTripWrapperModel.TheTripResponse is null || userTripWrapperModel.TheUserDTO is null) { return StatusCode(400); }
 
@@ -100,6 +100,34 @@ namespace E_Bus.Presentation.Areas.User.Controllers
             };
         }
 
-        
+        [HttpGet]
+        public async Task<IActionResult> MyReservations()
+        {
+            var userName = User?.Identity?.Name;
+            if (string.IsNullOrEmpty(userName)) return StatusCode(StatusCodes.Status400BadRequest);
+            var user = await _userManager.FindByNameAsync(userName);
+            if (user is null)
+            {
+                return StatusCode(StatusCodes.Status400BadRequest);
+            }
+
+            var userReservations = await _reservationService.GetReservationByUserId(user.Id);
+
+            return View(userReservations);
+        }
+
+        [HttpPost("{TripId:guid}/{UserId:guid}")]
+        [HttpGet("{TripId:guid}/{UserId:guid}")]
+        public async Task<IActionResult> DeleteReservation([FromRoute] ReservationId reservationId,[FromForm] DateTime DepartureTime)
+        {
+            if (DepartureTime.Equals(new DateTime()) || DateTime.Now.CompareTo(DepartureTime.AddDays(-1)) > 0)
+            {
+                return StatusCode(StatusCodes.Status400BadRequest);
+            }
+            return (await _reservationService.DeleteReservation(reservationId)) ?
+                RedirectToAction(actionName:nameof(MyReservations), controllerName:"Trips", routeValues: new { area = "user" })
+            : StatusCode(StatusCodes.Status400BadRequest)
+            ;
+        }
     }
 }

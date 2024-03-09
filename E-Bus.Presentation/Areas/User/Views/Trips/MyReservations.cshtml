@@ -1,0 +1,50 @@
+﻿@model List<ReservationResponse>
+@{
+    ViewBag.Title = "My Reservations";
+}
+
+<div class="flexColumn center-page">
+    @if (Model is null || !Model.Any())
+    {
+        <span style="text-align:center" class="text-red text-largeBolded">No reservations</span>
+
+    }
+    else
+    {
+        <table class="table table-striped m-5">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Reservation Time</th>
+                    <th scope="col">Trip (Departure - Arrival)</th>
+                    <th scope="col">Options</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (ReservationResponse reservationResponse in Model)
+                {
+                    <tr>
+                        <th scope="row">@(Model.IndexOf(reservationResponse) + 1)</th>
+                        <td>@reservationResponse.ReservationTime</td>
+                        <td>@reservationResponse.TheTripResponse?.Starting - @reservationResponse.TheTripResponse?.Ending</td>
+                        <td>
+                            <div class="flexRow">
+                            <a role="button" class="btn btn-outline-success" asp-area="user" asp-controller="Trips" asp-action="ShowReservation" asp-route-UserId="@reservationResponse.TheUserDTO.UserId" asp-route-TripId="@reservationResponse.TheTripResponse.Id">Show</a>
+                            @if (DateTime.Now.CompareTo(Convert.ToDateTime(@reservationResponse.TheTripResponse.DepartureTime).AddDays(-1)) <= 0)
+                            {
+
+                                
+                                <form method="post" asp-controller="Trips" asp-action="DeleteReservation" asp-route-TripId="@reservationResponse.TheTripResponse.Id" asp-route-UserId="@reservationResponse.TheUserDTO.UserId" asp-area="user">
+                                        <input type="hidden" name="DepartureTime" value="@reservationResponse.TheTripResponse.DepartureTime" />
+                                    <button type="submit" class="btn btn-outline-danger">Delete</button>
+                                </form>
+
+                            }
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>

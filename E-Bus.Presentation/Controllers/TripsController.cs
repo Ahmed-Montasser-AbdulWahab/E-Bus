@@ -30,6 +30,12 @@ namespace E_Bus.Presentation.Controllers
             return View(await _tripsService.GetUpcomingTripsAsync());
         }
 
-        
+        [AllowAnonymous]
+        [HttpGet("{tripId:guid}")]
+        public async Task<IActionResult> TripDetails(Guid tripId)
+        {
+            return View(await _tripsService.GetTripByIdAsync(tripId, true));
+        }
+
     }
 }

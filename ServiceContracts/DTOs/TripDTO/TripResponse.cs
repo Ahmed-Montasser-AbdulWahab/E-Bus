@@ -26,7 +26,7 @@ namespace ServiceContracts.DTOs.TripDTO
 
         public string? ArrivalTime { get; set; }
 
-        public string? RemainingSeats { get; set; }
+        public string? TakenSeats { get; set; }
 
         public string? NumberOfSeats { get; set; }
     }
@@ -46,7 +46,7 @@ namespace ServiceContracts.DTOs.TripDTO
                 ServiceTypeName = trip.ServiceType?.Name,
                 Ticket = trip.Ticket.ToString("N"),
                 NumberOfSeats = trip.ServiceType?.Seats.ToString(),
-                RemainingSeats = $"{(trip.Reservations?.Count ?? 0)}"
+                TakenSeats = $"{(trip.Reservations?.Count ?? 0)}"
             };
         }
 

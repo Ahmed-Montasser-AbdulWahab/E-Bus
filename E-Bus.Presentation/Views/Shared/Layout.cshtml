@@ -21,11 +21,19 @@
                     <li class="nav-item">
                         <a class="nav-link" asp-action="UpcomingTrips" asp-controller="Trips">Upcoming Trips</a>
                     </li>
-                    @if (User is not null && User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                    @if (User is not null && User.IsInRole("Admin"))
                     {
                         <li class="nav-item">
                             <a class="nav-link" asp-controller="Trips" asp-action="AddTrip" asp-area="admin">
                                 Add Trip
+                            </a>
+                        </li>
+                    }
+                    @if (User is not null && User.IsInRole("User"))
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Trips" asp-action="MyReservations" asp-area="user" >
+                                My Reservations
                             </a>
                         </li>
                     }

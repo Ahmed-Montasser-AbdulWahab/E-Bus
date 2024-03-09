@@ -24,13 +24,10 @@ namespace Repositories.TripRepository
 
         }
 
-        public async Task<bool> DeleteAsync(object entityId)
+        public async Task<bool> DeleteAsync(Trip entity)
         {
-            var tripFromDb = await _tripTable.FindAsync(entityId);
 
-            if (tripFromDb is null) { return false; }
-
-            _tripTable.Remove(tripFromDb);
+            _tripTable.Remove(entity);
 
             return (await _db.SaveChangesAsync()) > 0;
         }

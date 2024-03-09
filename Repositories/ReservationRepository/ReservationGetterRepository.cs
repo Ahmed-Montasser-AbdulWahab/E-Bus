@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Repositories.ReservationRepository
 {
-    public class ReservationGetterRepository : IGetterRepository<Reservation>
+    public class ReservationGetterRepository : IReservationGetterRepository
     {
         private readonly ApplicationDbContext _context;
         private readonly DbSet<Reservation> _reservations;
@@ -47,6 +47,20 @@ namespace Repositories.ReservationRepository
             }
 
             return reservations.FirstOrDefault(r => $"{r.TripId}{r.UserId}".Equals(id));
+        }
+
+        public async Task<List<Reservation>?> GetByTripIdAsync(Guid id, bool include = false)
+        {
+            return (include) ?
+                await _reservations.Include(r => r.User).Include(r => r.Trip).Include(r => r.Trip.ServiceType).Where(r => r.TripId == id).OrderByDescending(r => r.ReservationTime).ToListAsync() :
+                await _reservations.Where(r => r.TripId == id).OrderByDescending(r => r.ReservationTime).ToListAsync();
+        }
+
+        public async Task<List<Reservation>?> GetByUserIdAsync(Guid id, bool include = false)
+        {
+            return (include) ?
+                await _reservations.Include(r => r.User).Include(r => r.Trip).Include(r => r.Trip.ServiceType).Where(r => r.UserId == id).OrderByDescending(r => r.ReservationTime).ToListAsync() :
+                await _reservations.Where(r => r.TripId == id).OrderByDescending(r => r.ReservationTime).ToListAsync();
         }
     }
 }

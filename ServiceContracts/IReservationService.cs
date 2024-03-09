@@ -1,5 +1,4 @@
-﻿using ServiceContracts.DTOs;
-using ServiceContracts.DTOs.ReservationDTO;
+﻿using ServiceContracts.DTOs.ReservationDTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +10,9 @@ namespace ServiceContracts
     public interface IReservationService
     {
         public Task<bool> AddReservationAsync(ReservationAddRequest request);
-        public Task<UserTripWrapperModel?> GetReservationById(object id, bool include = false);
+        public Task<ReservationResponse?> GetReservationById(object id, bool include = true);
+        public Task<List<ReservationResponse>?> GetReservationByUserId(Guid id, bool include = true);
+
+        public Task<bool> DeleteReservation(ReservationId reservationId);
     }
 }

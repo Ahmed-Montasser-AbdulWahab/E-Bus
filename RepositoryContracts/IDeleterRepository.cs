@@ -8,6 +8,6 @@ namespace RepositoryContracts
 {
     public interface IDeleterRepository<T> where T : class
     {
-        public Task<bool> DeleteAsync(object entityId);
+        public Task<bool> DeleteAsync(T entity);
     }
 }

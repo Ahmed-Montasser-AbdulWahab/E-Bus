@@ -1,4 +1,4 @@
-﻿@model UserTripWrapperModel
+﻿@model ReservationResponse
 
 @{
     ViewBag.Title = "Register Trip";
@@ -28,8 +28,8 @@
                 </div>
             }
             <div class="flexRow center-page">
-                <button type="submit" class="btn btn-primary">Submit</button>
-                <a class="btn btn-outline-dark" asp-controller="Trips" asp-action="UpcomingTrips" asp-area="" role="button">Cancel</a>
+                <button type="submit" class="btn btn-outline-success">Submit</button>
+                <a class="btn btn-outline-danger" asp-controller="Trips" asp-action="UpcomingTrips" asp-area="" role="button">Cancel</a>
             </div>
 
         </form>

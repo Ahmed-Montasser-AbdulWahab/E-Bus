@@ -8,6 +8,7 @@ namespace E_Bus.Presentation.AutoMapperProfiles
         public AutoMapper() {
 
             CreateMap<Trip, Trip>();
+            CreateMap<Reservation, Reservation>();
         }
 
     }
