@@ -140,10 +140,10 @@ namespace E_Bus.Entities.Migrations
 
                     b.HasIndex("TripId");
 
-                    b.ToTable("Reservations", (string)null);
+                    b.ToTable("Reservations");
                 });
 
-            modelBuilder.Entity("E_Bus.Entities.Entities.TransportationService", b =>
+            modelBuilder.Entity("E_Bus.Entities.Entities.Transportation", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -162,7 +162,7 @@ namespace E_Bus.Entities.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Transportations", (string)null);
+                    b.ToTable("Transportations");
                 });
 
             modelBuilder.Entity("E_Bus.Entities.Entities.Trip", b =>
@@ -197,7 +197,7 @@ namespace E_Bus.Entities.Migrations
 
                     b.HasIndex("ServiceTypeId");
 
-                    b.ToTable("Trips", (string)null);
+                    b.ToTable("Trips");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>
@@ -324,7 +324,7 @@ namespace E_Bus.Entities.Migrations
 
             modelBuilder.Entity("E_Bus.Entities.Entities.Trip", b =>
                 {
-                    b.HasOne("E_Bus.Entities.Entities.TransportationService", "ServiceType")
+                    b.HasOne("E_Bus.Entities.Entities.Transportation", "ServiceType")
                         .WithMany()
                         .HasForeignKey("ServiceTypeId")
                         .OnDelete(DeleteBehavior.Cascade)

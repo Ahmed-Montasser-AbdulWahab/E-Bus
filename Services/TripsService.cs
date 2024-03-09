@@ -37,5 +37,13 @@ namespace Services
             return await adderRepository.AddAsync(trip);
             
         }
+
+        public async Task<TripResponse?> GetTripByIdAsync(Guid tripId, bool include = false)
+        {
+            var trip = await getterTripRepository.GetByIdAsync(tripId, include);
+            if(trip is null) return null;
+
+            return trip.ToResponse();
+        }
     }
 }

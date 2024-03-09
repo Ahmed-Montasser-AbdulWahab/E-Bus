@@ -1,0 +1,56 @@
+﻿@model UserTripWrapperModel
+
+<div class="flexColumn bordering center-page p-4">
+    <p class="title">Hope a nice Trip.</p>
+    @* <dl class="row">
+    <dt class="col-sm-3">Name</dt>
+    <dd class="col-sm-9">@Model.TheUserDTO.FullName</dd>
+
+    <dt class="col-sm-3">National ID</dt>
+    <dd class="col-sm-9">
+    @Model.TheUserDTO.NationalID
+    </dd>
+
+    <dt class="col-sm-3">TripId</dt>
+    <dd class="col-sm-9">@Model.TheTripResponse.Id</dd>
+
+    <dt class="col-sm-3">Trip</dt>
+    <dd class="col-sm-9">
+    <dl class="row">
+    <dt class="col-sm-4">Starting</dt>
+    <dd class="col-sm-8">@Model.TheTripResponse.Starting</dd>
+    </dl>
+    <dl class="row">
+    <dt class="col-sm-4">Ending</dt>
+    <dd class="col-sm-8"> @Model.TheTripResponse.Ending</dd>
+    </dl>
+    </dd>
+
+    <dt class="col-sm-3">Transportation Mean</dt>
+    <dd class="col-sm-9">@Model.TheTripResponse.ServiceTypeName</dd>
+
+    <dt class="col-sm-3">Ticket</dt>
+    <dd class="col-sm-9">
+    @Model.TheTripResponse.Ticket EGP
+    </dd>
+
+    <dt class="col-sm-3">Departure Time</dt>
+    <dd class="col-sm-9">@Model.TheTripResponse.DepartureTime</dd>
+
+    <dt class="col-sm-3">Arrival Time</dt>
+    <dd class="col-sm-9">@Model.TheTripResponse.ArrivalTime</dd>
+    </dl> *@
+    @{
+        await Html.RenderPartialAsync(partialViewName: "_ReservationPartialView", model: Model);
+    }
+
+   
+        @await Component.InvokeAsync("QR", Model);
+   
+    <div class="flexRow center-page">
+        <a class="btn btn-outline-success" asp-controller="Trips" asp-action="ShowPdf" asp-route-TripId="@Model.TheTripResponse.Id" asp-route-UserId="@Model.TheUserDTO.UserId" asp-area="" role="button">Print</a>
+        <a class="btn btn-outline-dark" asp-controller="Home" asp-action="Index" role="button">Go to Home</a>
+    </div>
+</div>
+
+

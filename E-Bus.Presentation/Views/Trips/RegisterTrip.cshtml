@@ -1,0 +1,85 @@
+﻿@model UserTripWrapperModel
+
+@{
+    ViewBag.Title = "Register Trip";
+}
+<div class="flexColumn center-page bordering p-4">
+    @if (ViewBag.Errors is not null)
+    {
+        <p class="text-red text-largeBolded">@ViewBag.Errors</p>
+        <a class="btn btn-outline-dark" asp-controller="Home" asp-action="Index" role="button">Go to Home</a>
+    }
+    else
+    {
+        @*         <p><strong>Name : </strong>@Model.TheUserDTO.FullName</p>
+    <p><strong>National Id : </strong>@Model.TheUserDTO.NationalID</p>
+    <p><strong>TripId : </strong>@Model.TheTripResponse.Id</p>
+    <p><strong>Trip : </strong>@Model.TheTripResponse.Starting <i class="fa-solid fa-arrow-right"></i> @Model.TheTripResponse.Ending</p>
+    <p><strong>Transportation Mean : </strong>@Model.TheTripResponse.ServiceTypeName</p>
+    <p><strong>Ticket : </strong> @Model.TheTripResponse.Ticket EGP</p>
+    <p><strong>Departure Time : </strong> @Model.TheTripResponse.DepartureTime</p>
+    <p><strong>Arrival Time : </strong> @Model.TheTripResponse.ArrivalTime</p> *@
+
+        @* <dl class="row">
+    <dt class="col-sm-3">Name</dt>
+    <dd class="col-sm-9">@Model.TheUserDTO.FullName</dd>
+
+    <dt class="col-sm-3">National ID</dt>
+    <dd class="col-sm-9">
+    @Model.TheUserDTO.NationalID
+    </dd>
+
+    <dt class="col-sm-3">TripId</dt>
+    <dd class="col-sm-9">@Model.TheTripResponse.Id</dd>
+
+    <dt class="col-sm-3">Trip</dt>
+    <dd class="col-sm-9">
+    <dl class="row">
+    <dt class="col-sm-4">Starting</dt>
+    <dd class="col-sm-8">@Model.TheTripResponse.Starting</dd>
+    </dl>
+    <dl class="row">
+    <dt class="col-sm-4">Ending</dt>
+    <dd class="col-sm-8"> @Model.TheTripResponse.Ending</dd>
+    </dl>
+    </dd>
+
+    <dt class="col-sm-3">Transportation Mean</dt>
+    <dd class="col-sm-9">@Model.TheTripResponse.ServiceTypeName</dd>
+
+    <dt class="col-sm-3">Ticket</dt>
+    <dd class="col-sm-9">
+    @Model.TheTripResponse.Ticket EGP
+    </dd>
+
+    <dt class="col-sm-3">Departure Time</dt>
+    <dd class="col-sm-9">@Model.TheTripResponse.DepartureTime</dd>
+
+    <dt class="col-sm-3">Arrival Time</dt>
+    <dd class="col-sm-9">@Model.TheTripResponse.ArrivalTime</dd>
+    </dl> *@
+
+        {
+            await Html.RenderPartialAsync(partialViewName: "_ReservationPartialView", model: Model);
+        }
+        <form asp-controller="Trips" asp-action="RegisterPostTrip" asp-area="" method="post">
+            <input type="hidden" name="UserId" value="@Model.TheUserDTO.UserId" />
+            <input type="hidden" name="TripId" value="@Model.TheTripResponse.Id" />
+            <input type="hidden" name="ReservationTime" value="@(DateTime.Now)" />
+
+            @if (ViewBag.Errors != null)
+            {
+                <div class="text-red m-2">
+                    <span>@ViewBag.Errors</span>
+                </div>
+            }
+            <div class="flexRow center-page">
+                <button type="submit" class="btn btn-primary">Submit</button>
+                <a class="btn btn-outline-dark" asp-controller="Trips" asp-action="UpcomingTrips" asp-area="" role="button">Cancel</a>
+            </div>
+
+        </form>
+    }
+</div>
+
+

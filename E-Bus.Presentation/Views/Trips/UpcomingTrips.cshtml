@@ -34,7 +34,13 @@
                         <td>@tripResponse.ArrivalTime</td>
 
                         <td>@tripResponse.RemainingSeats / <strong>@tripResponse.NumberOfSeats</strong></td>
-                        <td><a id="trip_register_anchor_tag" role="button" class="btn btn-primary" asp-controller="Trips" asp-action="Register">Register</a> <a id="trip_register_anchor_tag" role="button" class="btn btn-primary" asp-controller="Trips" asp-action="TripDetails">Details</a></td>
+                        <td>
+                            @if (User.IsInRole("User"))
+                            {
+                                <a id="trip_register_anchor_tag" role="button" class="btn btn-primary" asp-controller="Trips" asp-action="RegisterTrip" asp-route-tripId="@tripResponse.Id">Register</a>
+                            }
+                            <a id="trip_register_anchor_tag" role="button" class="btn btn-primary" asp-controller="Trips" asp-action="TripDetails" asp-route-tripId="@tripResponse.Id">Details</a>
+                        </td>
                     </tr>
                 }
             </tbody>

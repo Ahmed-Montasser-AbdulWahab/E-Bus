@@ -16,6 +16,8 @@ namespace ServiceContracts.DTOs
         public string? NationalID { get; set; }
 
         public string? PhoneNumber { get; set; }
+
+        public Guid UserId { get; set; }
     }
 
     public static class ApplicationUserExtensions
@@ -27,7 +29,8 @@ namespace ServiceContracts.DTOs
                 PhoneNumber = user.PhoneNumber,
                 Email = user.Email,
                 FullName = $"{user.FirstName} {user.LastName}",
-                NationalID = user.NationalID
+                NationalID = user.NationalID,
+                UserId = user.Id
 
             };
         }

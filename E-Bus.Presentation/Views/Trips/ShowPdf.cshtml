@@ -1,0 +1,52 @@
+﻿@model UserTripWrapperModel
+@{
+    Layout = null;
+}
+<link rel="stylesheet" href="@($"https://{Context.Request.Host}/PDFStyleSheet.css")" />
+<title>Ticket PDF</title>
+<div class="flexColumn center-page">
+    <p class="title">E-Bus Ticket</p>
+    <table width="80%" height="65%" class="center">
+        <tr>
+            <th>Name</th>
+            <td colspan="2">@Model.TheUserDTO.FullName</td>
+        </tr>
+        <tr>
+            <th>National ID</th>
+            <td colspan="2"> @Model.TheUserDTO.NationalID</td>
+        </tr>
+        <tr>
+            <th>Trip ID</th>
+            <td colspan="2"> @Model.TheTripResponse.Id</td>
+        </tr>
+        <tr>
+            <th rowspan="2">Trip</th>
+            <th style="text-align:center">Starting</th>
+            <td> @Model.TheTripResponse.Starting</td>
+        </tr>
+        <tr>
+            <th style="text-align:center">Ending</th>
+            <td> @Model.TheTripResponse.Ending</td>
+        </tr>
+        <tr>
+            <th>Transportation Mean</th>
+            <td colspan="2">@Model.TheTripResponse.ServiceTypeName</td>
+        </tr>
+        <tr>
+            <th>Ticket</th>
+            <td colspan="2">@Model.TheTripResponse.Ticket EGP</td>
+        </tr>
+        <tr>
+            <th>Departure Time</th>
+            <td colspan="2">@Model.TheTripResponse.DepartureTime</td>
+        </tr>
+        <tr>
+            <th>Arrival Time</th>
+            <td colspan="2">@Model.TheTripResponse.ArrivalTime</td>
+        </tr>
+
+    </table>
+    <div style="text-align:center">
+        @await Component.InvokeAsync("QR", Model)
+    </div>
+</div>

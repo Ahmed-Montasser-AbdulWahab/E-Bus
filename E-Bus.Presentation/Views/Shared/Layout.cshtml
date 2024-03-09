@@ -21,6 +21,14 @@
                     <li class="nav-item">
                         <a class="nav-link" asp-action="UpcomingTrips" asp-controller="Trips">Upcoming Trips</a>
                     </li>
+                    @if (User is not null && User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Trips" asp-action="AddTrip" asp-area="admin">
+                                Add Trip
+                            </a>
+                        </li>
+                    }
                 </ul>
                 <div class="d-flex">
                     <ul class="navbar-nav">
@@ -38,12 +46,12 @@
                         else
                         {
                             <li class="nav-item">
-                                <form asp-controller="Account" asp-action="Login" method="get">
+                                <form asp-controller="Account" asp-action="Login" asp-area="" method="get">
                                     <button type="submit" class="btn btn-dark">Login</button>
                                 </form>
                             </li>
                             <li class="nav-item">
-                                <form asp-controller="Account" asp-action="Register" method="get">
+                                <form asp-controller="Account" asp-action="Register" asp-area="" method="get">
                                     <button type="submit" class="btn btn-dark">Register</button>
                                 </form>
                             </li>

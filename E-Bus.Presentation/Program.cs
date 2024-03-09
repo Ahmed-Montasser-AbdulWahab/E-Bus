@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Repositories;
+using Repositories.ReservationRepository;
 using Repositories.TranspostationRepository;
 using Repositories.TripRepository;
 using RepositoryContracts;
@@ -62,9 +63,13 @@ builder.Services.AddScoped<IUpdaterRepository<Trip>, TripUpdaterRepository>();
 
 builder.Services.AddScoped<IGetterRepository<Transportation>, TransportationGetterRepository>();
 
+builder.Services.AddScoped<IGetterRepository<Reservation>, ReservationGetterRepository>();
+builder.Services.AddScoped<IAdderRepository<Reservation>, ReservationAdderRepository>();
+
 
 builder.Services.AddScoped<ITripsService,TripsService>();
 builder.Services.AddScoped<ITransportationsService,TransportationsService>();
+builder.Services.AddScoped<IReservationService,ReservationService>();
 
 builder.Services.AddAutoMapper(typeof(Program));
 builder.Services.ConfigureApplicationCookie(
@@ -97,7 +102,7 @@ if (app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Errors/ShowError");
 }
-
+Rotativa.AspNetCore.RotativaConfiguration.Setup("wwwroot", wkhtmltopdfRelativePath: "Rotativa");
 app.UseStatusCodePagesWithRedirects("/Errors/ShowError?statusCode={0}");
 app.UseHsts();
 app.UseHttpsRedirection();

@@ -1,0 +1,41 @@
+﻿table, th, td {
+    border: 1px solid #dddddd;
+    border-collapse: collapse;
+}
+
+table {
+    
+    
+}
+th {
+    text-align: left;
+    padding: 8px;
+}
+td {
+    text-align: center;
+    padding: 8px;
+}
+.center {
+    margin-left: auto;
+    margin-right: auto;
+}
+.flexColumn {
+    display: flex;
+    flex-direction: column
+}
+
+.flexRow {
+    display: flex;
+    flex-direction: row
+}
+.center-page {
+    justify-content: center;
+    align-items: center;
+}
+
+.title{
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight:bolder;
+    font-size:x-large;
+    text-align:center
+}

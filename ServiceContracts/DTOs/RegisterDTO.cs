@@ -9,34 +9,34 @@ namespace ServiceContracts.DTOs
 {
     public class RegisterDTO
     {
-        [Required]
+        [Required(ErrorMessage = "{0} field is required.")]
         [RegularExpression("[A-Za-z]*")]
         public string? FirstName { get; set; }
-        [Required]
+        [Required(ErrorMessage = "{0} field is required.")]
         [RegularExpression("[A-Za-z]*")]
         public string? LastName { get; set;}
-        [Required]
+        [Required(ErrorMessage = "{0} field is required.")]
         [StringLength(14, ErrorMessage ="NationalID is 14 digits.")]
         [RegularExpression("^[2-3]{1}[0-9]{13}$", ErrorMessage = "Not a valid NationalID.")]
         [Remote(action: "IsValidNationalID", controller: "Account", ErrorMessage = "NationalID is used before.")]
         public string? NationalID { get; set; }
-        [Required]
+        [Required(ErrorMessage = "{0} field is required.")]
         [DataType(DataType.EmailAddress)]
         [EmailAddress(ErrorMessage = "Not valid Email address.")]
         [Display(Name = "Email")]
         public string? EmailAddress { get; set;}
-        [Required]
+        [Required(ErrorMessage = "{0} field is required.")]
         [StringLength(8, ErrorMessage = "Password must be 8 characters.")]
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
         public string? Password { get; set; }
-        [Required]
+        [Required(ErrorMessage = "{0} field is required.")]
         [Compare("Password", ErrorMessage = "Passwords don't match.")]
         [StringLength(8, ErrorMessage = "Password must be 8 characters.")]
         [DataType(DataType.Password)]
         [Display(Name = "Confirm Password")]
         public string? ConfirmPassword { get; set; }
-        [Required]
+        [Required(ErrorMessage = "{0} field is required.")]
         [DataType(DataType.PhoneNumber)]
         [StringLength(11, ErrorMessage ="Not a valid PhoneNumber.")]
         [RegularExpression("^01[0-9]{9}$" , ErrorMessage = "Not a valid PhoneNumber.")]
