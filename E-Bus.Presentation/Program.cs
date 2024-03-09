@@ -63,8 +63,9 @@ builder.Services.AddScoped<IUpdaterRepository<Trip>, TripUpdaterRepository>();
 
 builder.Services.AddScoped<IGetterRepository<Transportation>, TransportationGetterRepository>();
 
-builder.Services.AddScoped<IGetterRepository<Reservation>, ReservationGetterRepository>();
+builder.Services.AddScoped<IReservationGetterRepository, ReservationGetterRepository>();
 builder.Services.AddScoped<IAdderRepository<Reservation>, ReservationAdderRepository>();
+builder.Services.AddScoped<IDeleterRepository<Reservation>,ReservationDeleterRepository>();
 
 
 builder.Services.AddScoped<ITripsService,TripsService>();

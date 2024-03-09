@@ -16,7 +16,7 @@
         {
             await Html.RenderPartialAsync(partialViewName: "_ReservationPartialView", model: Model);
         }
-        <form asp-controller="Trips" asp-action="RegisterPostTrip" asp-area="" method="post">
+        <form asp-controller="Trips" asp-action="RegisterPostTrip" asp-area="user" method="post">
             <input type="hidden" name="UserId" value="@Model.TheUserDTO.UserId" />
             <input type="hidden" name="TripId" value="@Model.TheTripResponse.Id" />
             <input type="hidden" name="ReservationTime" value="@(DateTime.Now)" />

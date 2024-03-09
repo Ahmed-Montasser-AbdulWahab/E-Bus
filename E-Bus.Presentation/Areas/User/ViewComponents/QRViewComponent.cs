@@ -3,14 +3,14 @@ using IronSoftware.Drawing;
 using Microsoft.AspNetCore.Mvc;
 using ServiceContracts.DTOs;
 
-namespace E_Bus.Presentation.ViewComponents
+namespace E_Bus.Presentation.Areas.User.ViewComponents
 {
     [ViewComponent]
     public class QRViewComponent : ViewComponent
     {
         public async Task<IViewComponentResult> InvokeAsync(UserTripWrapperModel userTripWrapperModel)
         {
-            string ticketDetails = $"{userTripWrapperModel.TheUserDTO.FullName}/{userTripWrapperModel.TheUserDTO.NationalID}/{userTripWrapperModel.TheUserDTO.PhoneNumber}"+
+            string ticketDetails = $"{userTripWrapperModel.TheUserDTO.FullName}/{userTripWrapperModel.TheUserDTO.NationalID}/{userTripWrapperModel.TheUserDTO.PhoneNumber}" +
                 $"/{userTripWrapperModel.TheUserDTO.Email}/{userTripWrapperModel.TheTripResponse.Id}/Departure : {userTripWrapperModel.TheTripResponse.Starting}" +
                 $"/Arrival : {userTripWrapperModel.TheTripResponse.Ending}";
             QrCode myQr = QrWriter.Write(ticketDetails);
@@ -19,7 +19,7 @@ namespace E_Bus.Presentation.ViewComponents
             // Save QR Code Bitmap as File
             //qrImage.SaveAs("qrCode.png");
 
-            return View(model:qrImage);
+            return View(model: qrImage);
         }
     }
 }
